@@ -153,7 +153,7 @@ README veya GENERATOR_README güncellerken:
 
 - GitHub Issues
 - GitHub Discussions
-- E-posta: [maintainer email]
+- E-posta: oguzhandede@gmail.com
 
 ## 📜 Code of Conduct
 
