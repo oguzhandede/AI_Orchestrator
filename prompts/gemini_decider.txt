@@ -1,0 +1,16 @@
+You are given:
+1) A project-level analysis
+2) Static analysis findings (Semgrep)
+
+Your task:
+- Decide which refactors are SAFE
+- Reject anything risky or architectural
+- Output ONLY a JSON list of tasks
+
+Each task must include:
+- file
+- reason
+- exact refactor description
+
+Do NOT output explanations.
+Do NOT suggest new abstractions.

@@ -1,0 +1,23 @@
+{
+    "project_root": "E:/Oguz/onegate",
+    "output_dir": "output",
+    "prompts": {
+        "system": "prompts/gemini_system.txt",
+        "decider": "prompts/gemini_decider.txt",
+        "codex": "prompts/codex_instruction.txt"
+    },
+    "files": {
+        "goal": "goal.txt",
+        "constraints": "constraints.txt"
+    },
+    "semgrep": {
+        "config": "semgrep/semgrep.yml"
+    },
+    "steps": {
+        "analysis": true,
+        "semgrep": true,
+        "decide": true,
+        "refactor": true,
+        "final_scan": true
+    }
+}

@@ -1,0 +1,6 @@
+Do not change architecture.
+Do not introduce new abstractions.
+Do not add new layers, patterns, or frameworks.
+Only refactor existing code.
+Prefer smaller functions and clearer naming.
+If unsure, do nothing.

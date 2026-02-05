@@ -1,0 +1,3 @@
+Improve maintainability and readability.
+Reduce unnecessary complexity.
+Prefer deletion over addition.

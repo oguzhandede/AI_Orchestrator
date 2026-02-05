@@ -1,0 +1,3 @@
+# Dependencies for AI Orchestrator
+# tqdm is optional - progress bars will be disabled if not installed
+tqdm>=4.60.0

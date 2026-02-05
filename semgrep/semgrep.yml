@@ -1,0 +1,182 @@
+rules:
+  # Dart rules
+  - id: no-print-dart
+    message: "print kullanma, logger kullan"
+    languages: [dart]
+    severity: WARNING
+    pattern: print(...)
+
+  # Python rules
+  - id: no-print-python
+    message: "print() yerine logging kullan"
+    languages: [python]
+    severity: WARNING
+    patterns:
+      - pattern: print(...)
+      - pattern-not-inside: |
+          if __name__ == "__main__":
+            ...
+
+  - id: broad-exception-catch
+    message: "Çok geniş exception catch, spesifik exception kullan"
+    languages: [python]
+    severity: WARNING
+    pattern: |
+      try:
+        ...
+      except Exception:
+        ...
+
+  - id: todo-fixme-comments
+    message: "TODO/FIXME yorumu var, temizle"
+    languages: [python, javascript, typescript, dart, csharp, go, rust]
+    severity: INFO
+    patterns:
+      - pattern-regex: (TODO|FIXME|XXX|HACK)
+
+  # JavaScript/TypeScript rules
+  - id: console-log
+    message: "console.log yerine proper logging kullan"
+    languages: [javascript, typescript]
+    severity: WARNING
+    pattern: console.log(...)
+
+  - id: var-usage
+    message: "var yerine let/const kullan"
+    languages: [javascript, typescript]
+    severity: WARNING
+    pattern: var $X = ...
+
+  # General complexity rules
+  - id: long-function
+    message: "Fonksiyon çok uzun (>50 satır), böl"
+    languages: [python]
+    severity: WARNING
+    pattern-regex: "def \\w+\\([^)]*\\):[\\s\\S]{500,}"
+
+  - id: hardcoded-credentials
+    message: "GÜVENLIK: Hardcoded credential tespit edildi"
+    languages: [python, javascript, typescript, csharp, go, rust]
+    severity: ERROR
+    patterns:
+      - pattern-regex: (password|secret|api_key|token)\s*=\s*[\"'][^\"']{8,}[\"']
+
+  # ============================================
+  # C# Rules
+  # ============================================
+  - id: csharp-console-writeline
+    message: "Console.WriteLine yerine ILogger kullan"
+    languages: [csharp]
+    severity: WARNING
+    pattern: Console.WriteLine(...)
+
+  - id: csharp-console-write
+    message: "Console.Write yerine ILogger kullan"
+    languages: [csharp]
+    severity: WARNING
+    pattern: Console.Write(...)
+
+  - id: csharp-broad-exception
+    message: "Çok geniş exception catch, spesifik exception kullan"
+    languages: [csharp]
+    severity: WARNING
+    pattern: |
+      try { ... }
+      catch (Exception $E) { ... }
+
+  - id: csharp-empty-catch
+    message: "Boş catch bloğu - exception'ı logla veya throw et"
+    languages: [csharp]
+    severity: ERROR
+    pattern: |
+      try { ... }
+      catch { }
+
+  - id: csharp-throw-ex
+    message: "throw ex yerine throw kullan (stack trace korunur)"
+    languages: [csharp]
+    severity: WARNING
+    pattern: throw $EX;
+    pattern-inside: catch (...) { ... }
+
+  - id: csharp-async-void
+    message: "async void yerine async Task kullan"
+    languages: [csharp]
+    severity: WARNING
+    pattern: async void $METHOD(...) { ... }
+
+  - id: csharp-hardcoded-connection-string
+    message: "GÜVENLIK: Hardcoded connection string"
+    languages: [csharp]
+    severity: ERROR
+    patterns:
+      - pattern-regex: (ConnectionString|connectionString)\s*=\s*"[^"]{20,}"
+
+  # ============================================
+  # Go Rules
+  # ============================================
+  - id: go-fmt-println
+    message: "fmt.Println yerine log package kullan"
+    languages: [go]
+    severity: WARNING
+    pattern: fmt.Println(...)
+
+  - id: go-fmt-printf
+    message: "fmt.Printf yerine log package kullan"
+    languages: [go]
+    severity: WARNING
+    pattern: fmt.Printf(...)
+
+  - id: go-ignored-error
+    message: "Error görmezden geliniyor - handle et veya logla"
+    languages: [go]
+    severity: ERROR
+    pattern: $X, _ := $FUNC(...)
+
+  - id: go-panic-usage
+    message: "panic() yerine error döndür"
+    languages: [go]
+    severity: WARNING
+    pattern: panic(...)
+
+  - id: go-empty-error-check
+    message: "Boş error kontrolü - error'u handle et"
+    languages: [go]
+    severity: WARNING
+    pattern: |
+      if $ERR != nil {
+      }
+
+  # ============================================
+  # Rust Rules
+  # ============================================
+  - id: rust-println
+    message: "println! yerine log crate kullan"
+    languages: [rust]
+    severity: WARNING
+    pattern: println!(...)
+
+  - id: rust-unwrap
+    message: "unwrap() yerine expect() veya match kullan"
+    languages: [rust]
+    severity: WARNING
+    pattern: $X.unwrap()
+
+  - id: rust-expect-generic
+    message: "expect() mesajı açıklayıcı olmalı"
+    languages: [rust]
+    severity: INFO
+    pattern: $X.expect("...")
+
+  - id: rust-panic
+    message: "panic! yerine Result<T, E> döndür"
+    languages: [rust]
+    severity: WARNING
+    pattern: panic!(...)
+
+  - id: rust-unsafe-block
+    message: "unsafe blok - dikkatli incele"
+    languages: [rust]
+    severity: INFO
+    pattern: unsafe { ... }
+
