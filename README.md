@@ -155,6 +155,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Oğuzhan Dede**
 - GitHub: [@oguzhandede](https://github.com/oguzhandede)
+- LinkedIn: [Oğuzhan Dede](https://linkedin.com/in/oguzhandede)
 - Email: oguzhandede@gmail.com
 
 ---
